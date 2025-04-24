@@ -1,9 +1,11 @@
 package by.max.spring.http.controller;
 
 
-import by.max.spring.database.repository.UserRepository;
+import by.max.spring.database.entity.Role;
+
 import by.max.spring.dto.UserCreateEditDto;
 import by.max.spring.dto.UserReadDto;
+import by.max.spring.service.CompanyService;
 import by.max.spring.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.server.ResponseStatusException;
 public class UserController {
 
     private final UserService userService;
+    private final CompanyService companyService;
 
     @GetMapping
     public String findAll(Model model) {
@@ -31,6 +34,8 @@ public class UserController {
         return userService.findById(id)
                 .map(user -> {
                     model.addAttribute("user", user);
+                    model.addAttribute("roles", Role.values());
+                    model.addAttribute("companies", companyService.findAll());
                     return "user/user";
                 })
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
@@ -45,7 +50,7 @@ public class UserController {
     //@PutMapping("/{id}")
     @PostMapping("/{id}/update")
     public String update(@PathVariable("id") Long id, @ModelAttribute UserCreateEditDto user) {
-        return userService.findById(id)
+        return userService.update(id, user)
                 .map(it -> "redirect:/users/{id}")
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND));
     }
