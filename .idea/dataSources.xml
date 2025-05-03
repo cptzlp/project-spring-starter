@@ -4,6 +4,7 @@
     <data-source source="LOCAL" name="springdata@localhost" uuid="2fe5e808-ee4c-4225-ac4b-4dec8c592fa9">
       <driver-ref>postgresql</driver-ref>
       <synchronize>true</synchronize>
+      <schema-control>AUTOMATIC</schema-control>
       <jdbc-driver>org.postgresql.Driver</jdbc-driver>
       <jdbc-url>jdbc:postgresql://localhost:5432/springdata</jdbc-url>
       <jdbc-additional-properties>

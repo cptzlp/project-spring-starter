@@ -19,8 +19,7 @@ db:
 
 logging:
   level:
-    root: warn
-    by.max.spring.database.repository.pool: info
+    root: info
   file:
     name: by.max.logs
     path: /
