@@ -3,7 +3,6 @@ package by.max.spring.mapper;
 import by.max.spring.database.entity.User;
 import by.max.spring.dto.CompanyReadDto;
 import by.max.spring.dto.UserReadDto;
-import jakarta.persistence.Column;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -28,6 +27,7 @@ public class UserReadMapper implements Mapper<User, UserReadDto> {
                 object.getFirstname(),
                 object.getLastname(),
                 object.getRole(),
+                object.getImage(),
                 company
         );
     }
